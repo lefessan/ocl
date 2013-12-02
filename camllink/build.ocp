@@ -1,0 +1,10 @@
+
+begin program "camllink"
+  files = [
+    "clPredef.ml" "clPrim_c.ml" "clSymtable.ml"
+    "clPatch.ml" "clTr_const.ml" "clLink.ml"
+    "main.ml"
+  ]
+
+  requires = [ "clcomp" ]
+end

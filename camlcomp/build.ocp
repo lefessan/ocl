@@ -1,0 +1,35 @@
+begin library "cl"
+  files = [ "cl.ml" "clOS.ml" ]
+end
+
+begin library "clcomp"
+  files = [
+    "clConfig.ml" (* from .mlp #ifdef macintosh *)
+      "clMisc.ml" "clInterntl.ml" "clVersion.ml"
+    "clConst.ml" "clReadword.ml"
+      "clPrim.ml" "clLambda.ml"
+    "clGlobals.ml"
+   "clLocation.ml" (* from .mlp #ifdef macintosh *)
+   "clSyntax.ml"
+    "clModules.ml" "clBuiltins.ml" "clTypes.ml"
+    "clPr_type.ml" "clError.ml" "clTyping.ml"
+    "clTy_decl.ml" "clPr_decl.ml" "clTy_intf.ml"
+    "clTr_env.ml" "clEvent.ml" "clClauses.ml"
+    "clMatching.ml" "clTrstream.ml" "clFront.ml"
+    "clInstruct.ml" "clBack.ml" "clOpcodes.ml"
+    "clPrim_opc.ml" "clBuffcode.ml"
+    "clLabels.ml" "clReloc.ml" "clEmitcode.ml" "clEmit_phr.ml"
+    "clPrimdecl.ml"
+    ]
+  requires = [ "cl" ]
+end
+
+begin program "camlcomp"
+  files = [
+    "clLexer.mll" (* from .mlp #ifdef macintosh/unix/msdos *)
+    "clPar_aux.ml" "clParser.mly" "clCompiler.ml"
+    "clMain.ml"
+  ]
+
+  requires = [ "clcomp" ]
+end
