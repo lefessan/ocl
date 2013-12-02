@@ -2,7 +2,7 @@
 
 open Cl
 open ClReloc
-open Symtable
+open ClSymtable
 
 let patch_short buff pos v =
   set_nth_char buff pos (char_of_int v);

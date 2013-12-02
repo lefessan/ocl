@@ -3,8 +3,8 @@
 open Cl
 open ClConfig
 open ClMisc
-open Symtable
-open Link
+open ClSymtable
+open ClLink
 
 let object_files = ref ([] : string list)
 and exec_file = ref default_exec_name

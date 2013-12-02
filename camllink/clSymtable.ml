@@ -1,7 +1,7 @@
 open Cl
 open ClMisc
 open ClConst
-open Predef
+open ClPredef
 open Printf
 
 (* symtable.ml : to assign numbers to global variables and so on *)
@@ -177,7 +177,7 @@ let reset_linker_tables () =
   exn_tag_table := new_numtable 31;
   tag_exn_table := make_vect 50 unknown_exn_name;
   do_list reserve_num_of_exn predef_exn;
-  set_c_primitives Prim_c.primitives_table
+  set_c_primitives ClPrim_c.primitives_table
 ;;
 
 

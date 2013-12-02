@@ -3,7 +3,7 @@
 open Cl
 open ClConst
 open Obj
-open Symtable
+open ClSymtable
 
 (* To translate a structured constant into an object. *)
 

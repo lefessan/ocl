@@ -7,11 +7,11 @@ open ClMisc
 open ClLambda
 open ClConfig
 open ClOpcodes
-open Symtable
+open ClSymtable
 open ClReloc
 open ClEmit_phr
-open Patch
-open Tr_const
+open ClPatch
+open ClTr_const
 
 (* Production of a bytecode executable file *)
 

@@ -38,7 +38,7 @@ let main() =
                 "-lang", Arg.String set_language;
                 "-", Arg.String anonymous]
              anonymous;
-    Librar.make_library (rev !lib_files) !lib_name;
+    ClLibrar.make_library (rev !lib_files) !lib_name;
     exit 0
   with Toplevel ->
         exit 2

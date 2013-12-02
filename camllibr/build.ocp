@@ -1,7 +1,7 @@
 
 begin program "camllibr"
   files = [
-    "librar.ml" "main.ml"
+    "clLibrar.ml" "main.ml"
   ]
   requires = [ "clcomp" ]
 end
