@@ -9,9 +9,9 @@ exception Division_by_zero;;
 value minus : int -> int = 1 "~int"
   and minus_int : int -> int = 1 "~int"
         (* Unary negation. You can write [-e] instead of [minus e]. *)
-  and succ : int -> int = 1 "succ"
+  and succ : int -> int
         (* [succ x] is [x+1]. *)
-  and pred : int -> int = 1 "pred"
+  and pred : int -> int
         (* [pred x] is [x-1]. *)
   and prefix + : int -> int -> int = 2 "+int"
   and add_int : int -> int -> int = 2 "+int"

@@ -136,7 +136,7 @@ rule main = parse
     [' ' '\010' '\013' '\009' '\012'] +
       { main lexbuf }
   | ['A'-'Z' 'a'-'z' '\192'-'\214' '\216'-'\246' '\248'-'\255' ]
-    ( '_' ? ['A'-'Z' 'a'-'z' '\192'-'\214' '\216'-'\246' '\248'-'\255' ''' (*'*) '0'-'9' ] ) *
+    ( '_' ? ['A'-'Z' 'a'-'z' '\192'-'\214' '\216'-'\246' '\248'-'\255' '\'' (*'*) '0'-'9' ] ) *
       { let s = get_lexeme lexbuf in
           try
             hashtbl__find keyword_table s
@@ -159,7 +159,7 @@ rule main = parse
         end;
         lexbuf.lex_start_pos <- string_start - lexbuf.lex_abs_pos;
         STRING (get_stored_string()) }
-  | "'"
+  | "`"
       { let char_start = lexbuf.lex_start_pos + lexbuf.lex_abs_pos in
         let c = char lexbuf in
         lexbuf.lex_start_pos <- char_start - lexbuf.lex_abs_pos;
@@ -244,13 +244,13 @@ and comment = parse
           raise(Lexical_error(Unterminated_string, string_start, string_end))
         end;
         comment lexbuf }
-  | "''"
+  | "``"
       { comment lexbuf }
-  | "'" [^ '\\' '\''] "'"
+  | "`" [^ '\\' '`'] "`"
       { comment lexbuf }
-  | "'" '\\' ['\\' '\'' 'n' 't' 'b' 'r'] "'"
+  | "`" '\\' ['\\' '`' 'n' 't' 'b' 'r'] "`"
       { comment lexbuf }
-  | "'" '\\' ['0'-'9'] ['0'-'9'] ['0'-'9'] "'"
+  | "`" '\\' ['0'-'9'] ['0'-'9'] ['0'-'9'] "`"
       { comment lexbuf }
   | eof
       { raise(Lexical_error
@@ -259,13 +259,13 @@ and comment = parse
       { comment lexbuf }
 
 and char = parse
-    [^ '\\' '\''] "'"
+    [^ '\\' '`'] "`"
       { get_lexeme_char lexbuf 0 }
-  | '\\' ['\\' '\'' 'n' 't' 'b' 'r'] "'"
+  | '\\' ['\\' '`' 'n' 't' 'b' 'r'] "`"
       { char_for_backslash (get_lexeme_char lexbuf 1) }
-  | '\\' ['0'-'9'] ['0'-'9'] ['0'-'9'] "'"
+  | '\\' ['0'-'9'] ['0'-'9'] ['0'-'9'] "`"
       { char_for_decimal_code lexbuf 1 }
-  | [^ '\''] * ("'" | eof)
+  | [^ '`'] * ("`" | eof)
       { raise (Lexical_error(Bad_char_constant,
                             get_lexeme_start lexbuf - 1,
                             get_lexeme_end lexbuf)) }

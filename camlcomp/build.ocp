@@ -31,5 +31,5 @@ begin program "camlcomp"
     "clMain.ml"
   ]
 
-  requires = [ "clcomp" ]
+  requires = [ "clcomp" "compiler-libs.bytecomp" ]
 end
